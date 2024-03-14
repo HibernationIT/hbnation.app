@@ -11,16 +11,16 @@ export default function Header() {
     let value;
 
     if (pathname === path || (pathname.startsWith(path) && path !== "/"))
-      value = "text-white bg-main-500 md:bg-transparent md:text-main-500";
+      value = "text-white bg-main md:bg-transparent md:text-main";
     else
       value =
-        "text-gray-50 hover:bg-main-500 hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-main-500";
+        "text-gray-50 hover:bg-main hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-main";
 
     return "block py-2 px-3 md:p-0 rounded " + value;
   }
 
   return (
-    <nav className="bg-main-100 w-full fixed">
+    <nav className="bg-main-100 w-full fixed z-50">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <svg

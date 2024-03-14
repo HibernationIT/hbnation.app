@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --background-image: url("/image/background_light.svg");
+
   --main-100: #e6cfff;
   --main-200: #dab7ff;
   --main-300: #c48dff;
@@ -19,6 +21,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --background-image: url("/image/background_dark.svg");
+
     --main-100: #120024;
     --main-200: #1d013a;
     --main-300: #2e005d;
