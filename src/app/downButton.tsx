@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useState } from "react";
-import ArrowSvg from "../icons/arrowSvg";
+import ArrowSvg from "../components/icons/arrowSvg";
 
 export default function () {
   function scrollDown() {

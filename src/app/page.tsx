@@ -1,15 +1,85 @@
-import DownButton from "@/components/atom/downButton";
+import DownButton from "@/app/downButton";
 import IconSvg from "@/components/icons/IconSvg";
 import BlogSvg from "@/components/icons/blogSvg";
 import IllustSvg from "@/components/icons/illustSvg";
 import ProjectSvg from "@/components/icons/projectSvg";
 import Footer from "@/components/templates/footer";
 import Header from "@/components/templates/header";
+import Accodion from "./accordion";
+import { getDatabase } from "@/api/notion";
 
-export default function Home() {
+async function getData() {
+  console.time("home");
+  const [frontend, backend] = await Promise.all([
+    getDatabase("1773e86a473547e4afff943c8581cebc", {
+      filter: {
+        property: "태그",
+        select: {
+          equals: "frontend",
+        },
+      },
+      sorts: [
+        {
+          property: "이름",
+          direction: "ascending",
+        },
+      ],
+    }),
+    getDatabase("1773e86a473547e4afff943c8581cebc", {
+      filter: {
+        property: "태그",
+        select: {
+          equals: "backend",
+        },
+      },
+      sorts: [
+        {
+          property: "이름",
+          direction: "ascending",
+        },
+      ],
+    }),
+  ]);
+  console.timeEnd("home");
+
+  return {
+    frontend,
+    backend,
+  };
+}
+
+export default async function Home() {
+  const data = await getData();
+
   const tags = {
     "hbnation.it@gmail.com": "mailto:hbnation.it@gmail.com",
     Github: "https://github.com/HibernationIT",
+  };
+  const navigations = {
+    PROJECT: {
+      icon: (
+        <ProjectSvg className="w-16 h-16 md:w-24 md:h-24 transition-colors fill-gray-400" />
+      ),
+      url: "/project",
+    },
+    BLOG: {
+      icon: (
+        <BlogSvg className="w-16 h-16 md:w-24 md:h-24 transition-colors fill-gray-400" />
+      ),
+      url: "/blog",
+    },
+    ILLUST: {
+      icon: (
+        <IllustSvg className="w-16 h-16 md:w-24 md:h-24 transition-colors fill-gray-400" />
+      ),
+      url: "/illust",
+    },
+    ICON: {
+      icon: (
+        <IconSvg className="w-16 h-16 md:w-24 md:h-24 transition-colors fill-gray-400" />
+      ),
+      url: "/icon",
+    },
   };
 
   return (
@@ -51,47 +121,34 @@ export default function Home() {
           </div>
           <div className="flex flex-col flex-shrink-0 items-center w-full h-64 bg-[rgba(255,255,255,0.5)] dark:bg-[rgba(0,0,0,0.5)]">
             <div className="flex flex-row justify-between max-w-screen-xl w-full h-fit py-14 md:py-7 px-12 md:px-24">
-              <a
-                href="/project"
-                className="text-center [&:hover>svg]:fill-white [&:hover>span]:text-white"
-              >
-                <ProjectSvg className="w-16 h-16 md:w-24 md:h-24 transition-colors fill-gray-400" />
-                <span className="text-gray-400 text-sm md:text-base transition-colors font-bold">
-                  PROJECT
-                </span>
-              </a>
-              <a
-                href="/blog"
-                className="text-center [&:hover>svg]:fill-white [&:hover>span]:text-white"
-              >
-                <BlogSvg className="w-16 h-16 md:w-24 md:h-24 transition-colors fill-gray-400" />
-                <span className="text-gray-400 text-sm md:text-base transition-colors font-bold">
-                  BLOG
-                </span>
-              </a>
-              <a
-                href="/illust"
-                className="text-center [&:hover>svg]:fill-white [&:hover>span]:text-white"
-              >
-                <IllustSvg className="w-16 h-16 md:w-24 md:h-24 transition-colors fill-gray-400" />
-                <span className="text-gray-400 text-sm md:text-base transition-colors font-bold">
-                  ILLUST
-                </span>
-              </a>
-              <a
-                href="/icon"
-                className="text-center [&:hover>svg]:fill-white [&:hover>span]:text-white"
-              >
-                <IconSvg className="w-16 h-16 md:w-24 md:h-24 transition-colors fill-gray-400" />
-                <span className="text-gray-400 text-sm md:text-base transition-colors font-bold">
-                  ICON
-                </span>
-              </a>
+              {(
+                Object.keys(navigations) as Array<keyof typeof navigations>
+              ).map((nav, key) => (
+                <a
+                  href={navigations[nav].url}
+                  key={key.toString()}
+                  className="text-center [&:hover>svg]:fill-white [&:hover>span]:text-white"
+                >
+                  {navigations[nav].icon}
+                  <span className="text-gray-400 text-sm md:text-base transition-colors font-bold">
+                    {nav}
+                  </span>
+                </a>
+              ))}
             </div>
             <DownButton />
           </div>
         </section>
-        <section className="flex flex-col relative w-full h-[calc(100vh-72px)]"></section>
+        <section className="flex flex-col items-center relative w-full min-h-[calc(100vh-72px)]">
+          <div className="max-w-screen-xl w-full px-9 py-8">
+            <h2 className="text-gray-0 text-2xl font-bold">What I can do</h2>
+            <p className="mt-2 mb-9 text-base text-gray-500">
+              지금까지 실무에서 사용했거나 취미로 개발 시 사용해본 프레임워크
+              또는 언어입니다.
+            </p>
+            <Accodion data={data} />
+          </div>
+        </section>
       </main>
       <Footer />
     </>

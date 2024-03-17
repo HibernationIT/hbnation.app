@@ -47,6 +47,9 @@ const config: Config = {
       72: "18rem",
       80: "20rem",
       96: "24rem",
+      100: "28rem",
+      104: "32rem",
+      108: "36rem",
       114: "52.5rem",
     },
     extend: {
@@ -55,6 +58,7 @@ const config: Config = {
       },
       colors: {
         gray: {
+          DEFAULT: "var(--gray)",
           0: "var(--gray-0)",
           50: "var(--gray-50)",
           100: "var(--gray-100)",

@@ -10,6 +10,7 @@
   --main-300: #c48dff;
   --main-400: #9445e6;
 
+  --gray: #ffffff;
   --gray-0: #333333;
   --gray-50: #111827;
   --gray-100: #1f2937;
@@ -28,6 +29,7 @@
     --main-300: #2e005d;
     --main-400: #4a0083;
 
+    --gray: #333333;
     --gray-0: #ffffff;
     --gray-50: #f9fafb;
     --gray-100: #f3f4f6;
