@@ -10,7 +10,7 @@ type IProps = {
 };
 
 export default function Accodion({ data }: IProps) {
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(1);
 
   return (
     <div>
@@ -65,11 +65,9 @@ export default function Accodion({ data }: IProps) {
         <div className="flex flex-row gap-5 p-5">
           <ul className="w-full text-sm font-medium text-gray-0 bg-main-200 border border-gray rounded-lg [&>li:not(:last-child)]:border-b [&>li:not(:last-child)]:border-gray">
             {data.frontend.results.map((value: any, key: number) => {
-              const name = (value.properties["이름"] as any).title[0]
-                .plain_text;
-              const image = (value.properties["이미지"] as any).files[0].file
-                .url;
-              const proficiency = (value.properties["숙련도"] as any).number;
+              const name = value.properties["이름"].title[0].plain_text;
+              const image = value.properties["이미지"].files[0].file.url;
+              const proficiency = value.properties["숙련도"].number;
 
               return (
                 <li
@@ -149,11 +147,9 @@ export default function Accodion({ data }: IProps) {
         <div className="flex flex-row gap-5 p-5">
           <ul className="w-full text-sm font-medium text-gray-0 bg-main-200 border border-gray rounded-lg [&>li:not(:last-child)]:border-b [&>li:not(:last-child)]:border-gray">
             {data.backend.results.map((value: any, key: number) => {
-              const name = (value.properties["이름"] as any).title[0]
-                .plain_text;
-              const image = (value.properties["이미지"] as any).files[0].file
-                .url;
-              const proficiency = (value.properties["숙련도"] as any).number;
+              const name = value.properties["이름"].title[0].plain_text;
+              const image = value.properties["이미지"].files[0].file.url;
+              const proficiency = value.properties["숙련도"].number;
 
               return (
                 <li
