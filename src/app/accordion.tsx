@@ -17,7 +17,7 @@ export default function Accodion({ data }: IProps) {
       <h2>
         <button
           type="button"
-          className={`flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray rounded-t-xl focus:ring-2 focus:ring-gray-200 hover:bg-main-100 gap-3${
+          className={`flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-950 rounded-t-xl focus:ring-2 focus:ring-gray-200 hover:bg-main-100 gap-3${
             open === 1 ? " bg-main-100" : ""
           }`}
           onClick={() => setOpen((state) => (state === 1 ? 0 : 1))}
@@ -58,12 +58,12 @@ export default function Accodion({ data }: IProps) {
         </button>
       </h2>
       <div
-        className={`overflow-hidden transition-all border border-b-0 border-gray ${
+        className={`overflow-hidden transition-all border border-b-0 border-gray-950 ${
           open === 1 ? "h-108" : "h-0"
         }`}
       >
         <div className="flex flex-row gap-5 p-5">
-          <ul className="w-full text-sm font-medium text-gray-0 bg-main-200 border border-gray rounded-lg [&>li:not(:last-child)]:border-b [&>li:not(:last-child)]:border-gray">
+          <ul className="w-full text-sm font-medium text-gray-0 bg-main-200 border border-gray-950 rounded-lg [&>li:not(:last-child)]:border-b [&>li:not(:last-child)]:border-gray">
             {data.frontend.results.map((value: any, key: number) => {
               const name = value.properties["이름"].title[0].plain_text;
               const image = value.properties["이미지"].files[0].file.url;
@@ -71,7 +71,7 @@ export default function Accodion({ data }: IProps) {
 
               return (
                 <li
-                  className="flex flex-row items-center gap-3 w-full px-4 py-2"
+                  className="flex flex-row items-center gap-3 w-full px-4 py-2 border-gray-950"
                   key={key.toString()}
                 >
                   <img src={image} alt={name} />
@@ -100,7 +100,7 @@ export default function Accodion({ data }: IProps) {
       <h2>
         <button
           type="button"
-          className={`flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray focus:ring-2 focus:ring-gray-200 hover:bg-main-100 gap-3${
+          className={`flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-950 focus:ring-2 focus:ring-gray-200 hover:bg-main-100 gap-3${
             open === 2 ? " border-b-0" : " border-b rounded-b-xl"
           } `}
           onClick={() => setOpen((state) => (state === 2 ? 0 : 2))}
@@ -140,12 +140,12 @@ export default function Accodion({ data }: IProps) {
         </button>
       </h2>
       <div
-        className={`overflow-hidden transition-all border-gray rounded-b-lg ${
+        className={`overflow-hidden transition-all border-gray-950 rounded-b-lg ${
           open === 2 ? "border h-108" : "border-0 h-0"
         }`}
       >
         <div className="flex flex-row gap-5 p-5">
-          <ul className="w-full text-sm font-medium text-gray-0 bg-main-200 border border-gray rounded-lg [&>li:not(:last-child)]:border-b [&>li:not(:last-child)]:border-gray">
+          <ul className="w-full text-sm font-medium text-gray-0 bg-main-200 border border-gray-950 rounded-lg [&>li:not(:last-child)]:border-b">
             {data.backend.results.map((value: any, key: number) => {
               const name = value.properties["이름"].title[0].plain_text;
               const image = value.properties["이미지"].files[0].file.url;
@@ -153,7 +153,7 @@ export default function Accodion({ data }: IProps) {
 
               return (
                 <li
-                  className="flex flex-row items-center gap-3 w-full px-4 py-2"
+                  className="flex flex-row items-center gap-3 w-full px-4 py-2 border-gray-950"
                   key={key.toString()}
                 >
                   <img src={image} alt={name} />

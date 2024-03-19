@@ -59,7 +59,7 @@ type OrFilter = {
 type CheckboxFilter = {
   checkbox?: {
     equals?: boolean;
-    // does_not_equal: boolean;
+    does_not_equal?: boolean;
   };
 };
 type DateFilter = {
