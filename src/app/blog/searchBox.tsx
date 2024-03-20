@@ -1,22 +1,32 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { FormEvent, RefObject, useLayoutEffect, useRef } from "react";
 
-export default function SearchBox() {
+type IProps = {
+  title?: string;
+};
+
+export default function SearchBox({ title }: IProps) {
   const router = useRouter();
+  const titleRef = useRef() as RefObject<HTMLInputElement>;
+
+  useLayoutEffect(() => {
+    // @ts-ignore
+    titleRef.current.value = title || "";
+  }, []);
 
   return (
     <form
       className="flex items-center w-full"
-      action={() => {
-        router.replace("/blog?param=test", {
+      onSubmit={(e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        router.replace(`/blog?title=${e.currentTarget["search-title"].value}`, {
           scroll: false,
         });
-
-        return false;
       }}
     >
-      <label className="sr-only">Search</label>
       <div className="relative w-full">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg
@@ -37,13 +47,22 @@ export default function SearchBox() {
           </svg>
         </div>
         <input
+          ref={titleRef}
           type="text"
-          id="simple-search"
+          id="search-title"
           className="bg-gray-700 border border-gray-500 text-gray-0 text-sm rounded-lg focus:ring-main focus:border-main block w-full ps-10 p-2.5 [&:placeholder-shown~button]:invisible"
           placeholder="제목으로 포스팅을 찾아보세요"
           required
         />
-        <button type="reset" className="absolute inset-y-0 end-3 text-gray-400">
+        <button
+          type="reset"
+          className="absolute inset-y-0 end-3 text-gray-400"
+          onClick={() => {
+            router.replace("/blog", {
+              scroll: false,
+            });
+          }}
+        >
           <svg
             className="w-6 h-6"
             aria-hidden="true"

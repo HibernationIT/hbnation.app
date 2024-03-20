@@ -1,17 +1,39 @@
 import Footer from "@/components/templates/footer";
 import Header from "@/components/templates/header";
 import SearchBox from "./searchBox";
-import { getDatabase } from "@/api/notion";
-import Card from "./card";
+import { Filter, getDatabase } from "@/api/notion";
+import Card from "./cardTemplate";
+import Row from "./row";
+import CardTemplate from "./cardTemplate";
 
-async function getData() {
+type IProps = {
+  searchParams: {
+    title: string;
+  };
+};
+
+async function getData(title: string) {
   console.time("blog");
-  const data = await getDatabase("7bcac528c84545bf861e7ec9bc26409a", {
-    filter: {
+  const filter: Filter[] = [
+    {
       property: "노출",
       checkbox: {
         equals: true,
       },
+    },
+  ];
+  if (title) {
+    filter.push({
+      property: "이름",
+      rich_text: {
+        contains: title,
+      },
+    });
+  }
+
+  const data = await getDatabase("7bcac528c84545bf861e7ec9bc26409a", {
+    filter: {
+      and: filter,
     },
     sorts: [
       {
@@ -24,35 +46,48 @@ async function getData() {
   return data;
 }
 
-export default async function Blog() {
-  const data = await getData();
+export default async function Blog({ searchParams }: IProps) {
+  const data = await getData(searchParams.title);
+  const top3 = data.results.slice(0, 3);
 
   return (
     <>
       <Header />
       <main className="flex flex-col items-center pt-18">
-        <section className="flex flex-col max-w-screen-sm w-full gap-4 px-8 pt-16">
+        <section className="flex flex-col max-w-screen-sm w-full gap-4 px-8 pt-16 mb-18">
           <h2 className="text-gray-0 text-4xl font-bold text-center">
             My Blog
           </h2>
           <p className="mt-2 mb-4 text-xl text-gray-500 text-center">
             개발 관련 공부한 내용이나 내가 기억하기 위한 기록을 공유합니다
           </p>
-          <SearchBox />
+          <SearchBox title={searchParams.title} />
         </section>
-        <section className="grid grid-cols-1 justify-items-center gap-16 xl:grid-cols-3 md:grid-cols-2 px-8 py-18">
-          {data.results.map((value: any, key: number) => {
-            const data = {
-              image: value.properties["이미지"].files[0].file.url,
-              tags: value.properties["태그"].multi_select.map(
-                (v: any) => v.name
-              ),
-              name: value.properties["이름"].title[0].plain_text,
-              description: value.properties["설명"].rich_text[0].plain_text,
-            };
-            return <Card key={key.toString()} data={data} />;
-          })}
-        </section>
+        {searchParams.title == undefined && (
+          <section className="max-w-screen-xl w-full px-8 mb-8">
+            <h2 className=" w-full text-gray-0 text-3xl font-bold text-start mb-8">
+              최신글
+            </h2>
+            <div className="flex flex-col gap-8 [&>hr:last-child]:invisible">
+              {top3.map((value: any, key: number) => {
+                const data = {
+                  date: value.properties["날짜"].date.start,
+                  tags: value.properties["태그"].multi_select.map(
+                    (v: any) => v.name
+                  ),
+                  name: value.properties["이름"].title[0].plain_text,
+                  description: value.properties["설명"].rich_text[0].plain_text,
+                };
+
+                return <Row key={key.toString()} data={data} />;
+              })}
+            </div>
+          </section>
+        )}
+        <h2 className=" w-full text-gray-0 text-3xl font-bold text-center mb-8">
+          전체 글
+        </h2>
+        <CardTemplate data={data} />
       </main>
       <Footer />
     </>

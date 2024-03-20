@@ -28,8 +28,8 @@ async function requestValue(url: string, option: any) {
   });
 }
 
-type Filter = {
-  property: string;
+export type Filter = {
+  property?: string;
 } & FilterType;
 
 type FilterType = AndFilter &
@@ -50,10 +50,10 @@ type FilterType = AndFilter &
   IdFilter;
 
 type AndFilter = {
-  and?: FilterType[];
+  and?: Filter[];
 };
 type OrFilter = {
-  or?: FilterType[];
+  or?: Filter[];
 };
 
 type CheckboxFilter = {
