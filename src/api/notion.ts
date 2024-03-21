@@ -2,7 +2,12 @@ const apiKey = process.env.NOTION_API_KEY;
 
 export async function getDatabase(
   databaseId: string,
-  body: { filter?: Filter; sorts?: Sorts }
+  body: {
+    filter?: Filter;
+    sorts?: Sorts;
+    page_size?: number;
+    start_cursor?: string;
+  }
 ) {
   const res = await requestValue(
     `https://api.notion.com/v1/databases/${databaseId}/query`,
@@ -17,9 +22,7 @@ export async function getDatabase(
 async function requestValue(url: string, option: any) {
   return await fetch(url, {
     ...option,
-    next: {
-      revalidate: 3600,
-    },
+    cache: "no-store",
     headers: {
       "Notion-Version": "2022-06-28",
       "Content-Type": "application/json",

@@ -9,7 +9,7 @@ type IProps = {
   };
 };
 
-export default function ProjectSection({ idx, data }: IProps) {
+export default function Section({ idx, data }: IProps) {
   return (
     <section
       className={`flex flex-col items-center max-w-screen-xl w-full gap-6 md:gap-16 px-9 mb-16 ${

@@ -75,8 +75,8 @@ export default function Header() {
               </a>
             </li>
             <li>
-              <a href="/illust" className={active("/illust")}>
-                ILLUST
+              <a href="/design" className={active("/design")}>
+                DESIGN
               </a>
             </li>
             <li>

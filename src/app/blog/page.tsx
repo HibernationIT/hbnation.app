@@ -2,7 +2,6 @@ import Footer from "@/components/templates/footer";
 import Header from "@/components/templates/header";
 import SearchBox from "./searchBox";
 import { Filter, getDatabase } from "@/api/notion";
-import Card from "./cardTemplate";
 import Row from "./row";
 import CardTemplate from "./cardTemplate";
 
