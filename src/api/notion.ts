@@ -19,6 +19,33 @@ export async function getDatabase(
   return await res.json();
 }
 
+export async function getPage(pageId: string) {
+  return await getAll(pageId);
+}
+
+async function getAll(blockId: string) {
+  const response = await getBlockChild(blockId);
+
+  return Promise.all(
+    response.results.map(async (child: any) => {
+      if (child.has_children) {
+        child[child.type].children = await getAll(child.id);
+        return child;
+      }
+      return child;
+    })
+  );
+}
+
+async function getBlockChild(blockId: string) {
+  const res = await requestValue(
+    `https://api.notion.com/v1/blocks/${blockId}/children?page_size=100`,
+    { method: "GET" }
+  );
+
+  return await res.json();
+}
+
 async function requestValue(url: string, option: any) {
   return await fetch(url, {
     ...option,

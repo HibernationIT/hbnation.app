@@ -1,4 +1,21 @@
-type IProps = {
+export default function RowTemplate({ data }: any) {
+  return (
+    <div className="flex flex-col w-full gap-16">
+      {data.map((value: any, key: number) => {
+        const d = {
+          name: value.properties["이름"].title[0].plain_text as string,
+          link: value.properties["링크"].url as string,
+          image: value.properties["이미지"].files[0].file.url as string,
+          description: value.properties["설명"].rich_text[0]
+            .plain_text as string,
+        };
+        return <Block key={key.toString()} idx={key} data={d} />;
+      })}
+    </div>
+  );
+}
+
+type BlockIProps = {
   idx: number;
   data: {
     image: string;
@@ -8,10 +25,10 @@ type IProps = {
   };
 };
 
-export default function Section({ idx, data }: IProps) {
+function Block({ idx, data }: BlockIProps) {
   return (
-    <section
-      className={`flex flex-col items-center max-w-screen-xl w-full gap-6 md:gap-16 px-9 mb-16 ${
+    <div
+      className={`flex flex-col items-center w-full gap-6 md:gap-16 ${
         idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
       }`}
     >
@@ -67,6 +84,6 @@ export default function Section({ idx, data }: IProps) {
           </svg>
         </a>
       </div>
-    </section>
+    </div>
   );
 }

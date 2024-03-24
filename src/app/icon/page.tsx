@@ -1,6 +1,6 @@
 import Footer from "@/components/templates/footer";
 import Header from "@/components/templates/header";
-import Section from "./section";
+import CardTemplate from "./cardTemplate";
 import { getDatabase } from "@/api/notion";
 
 async function getData() {
@@ -40,7 +40,7 @@ export default async function Icon() {
             마음껏 사용하여도 괜찮습니다
           </p>
         </section>
-        <Section data={data} />
+        <CardTemplate data={data} />
       </main>
       <Footer />
     </>

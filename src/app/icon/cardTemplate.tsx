@@ -6,7 +6,7 @@ type IProps = {
   data: any;
 };
 
-export default function Section({ data }: IProps) {
+export default function CardTemplate({ data }: IProps) {
   const [size, setSize] = useState(32);
   const [width, setWidth] = useState(2);
 
@@ -55,7 +55,7 @@ export default function Section({ data }: IProps) {
             .join("");
 
           return (
-            <Card
+            <Block
               key={key.toString()}
               name={name}
               svg={svg}
@@ -69,7 +69,7 @@ export default function Section({ data }: IProps) {
   );
 }
 
-function Card({
+function Block({
   name,
   svg,
   size,

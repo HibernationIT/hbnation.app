@@ -1,7 +1,7 @@
 import { getDatabase } from "@/api/notion";
 import Footer from "@/components/templates/footer";
 import Header from "@/components/templates/header";
-import Section from "./section";
+import RowTemplate from "./rowTemplate";
 
 async function getData() {
   console.time("project");
@@ -38,19 +38,9 @@ export default async function Project() {
             지금까지 만든 토이 프로젝트들을 소개합니다
           </p>
         </section>
-        {data.results.map((value: any, key: number) => {
-          const data = {
-            name: value.properties["이름"].title[0].plain_text as string,
-            link: value.properties["링크"].url as string,
-            image: value.properties["이미지"].files[0].file.url as string,
-            stack: value.properties["기술스택"].files.map(
-              (f: any) => f.file.url
-            ) as string[],
-            description: value.properties["설명"].rich_text[0]
-              .plain_text as string,
-          };
-          return <Section key={key.toString()} idx={key} data={data} />;
-        })}
+        <section className="max-w-screen-xl w-full px-8">
+          <RowTemplate data={data.results} />
+        </section>
       </main>
       <Footer />
     </>

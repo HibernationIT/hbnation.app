@@ -2,8 +2,8 @@ import Footer from "@/components/templates/footer";
 import Header from "@/components/templates/header";
 import SearchBox from "./searchBox";
 import { Filter, getDatabase } from "@/api/notion";
-import Row from "./row";
 import CardTemplate from "./cardTemplate";
+import RowTemplate from "./rowTemplate";
 
 type IProps = {
   searchParams: {
@@ -67,26 +67,15 @@ export default async function Blog({ searchParams }: IProps) {
             <h2 className=" w-full text-gray-0 text-3xl font-bold text-start mb-8">
               최신글
             </h2>
-            <div className="flex flex-col gap-8 [&>hr:last-child]:invisible">
-              {top3.map((value: any, key: number) => {
-                const data = {
-                  date: value.properties["날짜"].date.start,
-                  tags: value.properties["태그"].multi_select.map(
-                    (v: any) => v.name
-                  ),
-                  name: value.properties["이름"].title[0].plain_text,
-                  description: value.properties["설명"].rich_text[0].plain_text,
-                };
-
-                return <Row key={key.toString()} data={data} />;
-              })}
-            </div>
+            <RowTemplate data={top3} />
           </section>
         )}
-        <h2 className=" w-full text-gray-0 text-3xl font-bold text-center mb-8">
-          전체 글
-        </h2>
-        <CardTemplate data={data} />
+        <section className="flex flex-col max-w-screen-2xl w-full gap-4 px-8 pt-16 mb-18">
+          <h2 className=" w-full text-gray-0 text-3xl font-bold text-center mb-8">
+            전체 글
+          </h2>
+          <CardTemplate data={data.results} />
+        </section>
       </main>
       <Footer />
     </>

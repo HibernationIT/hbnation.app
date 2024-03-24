@@ -1,4 +1,24 @@
-type IProps = {
+export default function RowTemplate({ data }: any) {
+  return (
+    <div className="flex flex-col w-full gap-16">
+      {data.map((value: any, key: number) => {
+        const d = {
+          name: value.properties["이름"].title[0].plain_text as string,
+          link: value.properties["링크"].url as string,
+          image: value.properties["이미지"].files[0].file.url as string,
+          stack: value.properties["기술스택"].files.map(
+            (f: any) => f.file.url
+          ) as string[],
+          description: value.properties["설명"].rich_text[0]
+            .plain_text as string,
+        };
+        return <Block key={key.toString()} idx={key} data={d} />;
+      })}
+    </div>
+  );
+}
+
+type BlockIProps = {
   idx: number;
   data: {
     image: string;
@@ -9,10 +29,10 @@ type IProps = {
   };
 };
 
-export default function Section({ idx, data }: IProps) {
+function Block({ data, idx }: BlockIProps) {
   return (
-    <section
-      className={`flex flex-col items-center max-w-screen-xl w-full gap-6 md:gap-16 px-9 mb-16 ${
+    <div
+      className={`flex flex-col items-center w-full gap-6 md:gap-16 ${
         idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
       }`}
     >
@@ -62,7 +82,10 @@ export default function Section({ idx, data }: IProps) {
             </div>
           ))}
         </div>
-        <a className="flex items-center gap-2 w-fit text-white bg-main hover:bg-main-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 hover:cursor-pointer">
+        <a
+          href={`/project/${encodeURIComponent(data.name)}`}
+          className="flex items-center gap-2 w-fit text-white bg-main hover:bg-main-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 hover:cursor-pointer"
+        >
           <span>Learn more</span>
           <svg
             className="w-6 h-6 text-white"
@@ -83,6 +106,6 @@ export default function Section({ idx, data }: IProps) {
           </svg>
         </a>
       </div>
-    </section>
+    </div>
   );
 }
