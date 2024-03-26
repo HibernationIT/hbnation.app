@@ -45,20 +45,22 @@ export default async function Bookmark({ value }: { value: Type }) {
     <div className="n2c_bookmark">
       <a href={value.bookmark.url} className="n2c_bookmark_" target="_blank">
         <div className="n2c_bookmark_content">
-          <p>{title}</p>
-          <p>{description}</p>
+          <p>{title || value.bookmark.url}</p>
+          <p>{description || value.bookmark.url}</p>
           <div className="n2c_bookmark_link">
-            <img src={icon} />
+            {icon && <img src={icon} />}
             <span>{value.bookmark.url}</span>
           </div>
         </div>
-        <div className="n2c_bookmark_image">
-          <div>
+        {image && (
+          <div className="n2c_bookmark_image">
             <div>
-              <img src={image} />
+              <div>
+                <img src={image} />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </a>
       {value.bookmark.caption.length !== 0 && (
         <div className="n2c_bookmark_caption">

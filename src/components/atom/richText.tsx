@@ -7,7 +7,7 @@ export default function RichText({ value }: { value: Type[] }) {
     if (v.annotations.italic) className += " n2c_italic";
     if (v.annotations.strikethrough) className += " n2c_strikethrough";
     if (v.annotations.underline) className += " n2c_underline";
-    if (v.annotations.code) className += " n2c_code";
+    if (v.annotations.code) className += " n2c_code_style";
     if ((idx === 0 || !value[idx - 1].annotations.code) && v.annotations.code)
       className += " n2c_code_start";
     if (

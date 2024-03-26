@@ -5,6 +5,7 @@ export type BlockType =
   | "callout"
   | "child_database"
   | "child_page"
+  | "code"
   | "column"
   | "column_list"
   | "divider"
@@ -162,16 +163,20 @@ export type Callout = {
     color: Color;
   };
 } & Block;
-export type ChildDatabase = {
-  child_database: {
-    title: string;
+export type Code = {
+  code: {
+    caption: RichText[];
+    rich_text: RichText[];
+    language: string;
   };
 } & Block;
-export type ChildPage = {
-  child_page: {
-    type: string;
-    child_page: {
-      title: string;
-    };
+export type ColumnList = {
+  column_list: {
+    children: Block[];
+  };
+} & Block;
+export type Column = {
+  column: {
+    children: Block[];
   };
 } & Block;
