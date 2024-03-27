@@ -87,11 +87,11 @@ export type Bots = {
   workspace_name: string;
 };
 
-export type Emoji = {
+export type Emoji_ = {
   type: "emoji";
   emoji: string;
 };
-export type File = {
+export type File_ = {
   type: "file";
   file?: {
     url: string;
@@ -159,7 +159,7 @@ export type BulletedListItem = {
 export type Callout = {
   callout: {
     rich_text: RichText[];
-    icon: Emoji | File;
+    icon: Emoji_ | File_;
     color: Color;
   };
 } & Block;
@@ -179,4 +179,16 @@ export type Column = {
   column: {
     children: Block[];
   };
+} & Block;
+export type Equation = {
+  equation: {
+    expression: string;
+  };
+} & Block;
+export type File = {
+  file: {
+    caption: RichText[];
+    type: "file" | "external";
+    name: string;
+  } & File_;
 } & Block;

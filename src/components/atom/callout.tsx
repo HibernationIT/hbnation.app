@@ -1,4 +1,4 @@
-import { Emoji, File, Callout as Type } from "@/type/notion";
+import { Emoji_, File_, Callout as Type } from "@/type/notion";
 import RichText from "./richText";
 
 export default function Callout({ value }: { value: Type }) {
@@ -22,16 +22,16 @@ export default function Callout({ value }: { value: Type }) {
   );
 }
 
-function Emoji({ value }: { value: Emoji }) {
+function Emoji({ value }: { value: Emoji_ }) {
   return (
     <div className="n2c_emoji">
       <span>{value.emoji}</span>
     </div>
   );
 }
-function File({ value }: { value: File }) {
+function File({ value }: { value: File_ }) {
   return (
-    <div className="n2c_file">
+    <div className="n2c_file_">
       <img src={value.external?.url || value.file?.url} />
     </div>
   );

@@ -7,6 +7,8 @@ import {
   ColumnList as ColumnListType,
   Paragraph as ParagraphType,
   Block as Type,
+  Equation as EquationType,
+  File as FileType,
 } from "@/type/notion";
 import Bookmark from "./bookmark";
 import Paragraph from "./paragraph";
@@ -16,6 +18,8 @@ import Code from "./code";
 import ColumnList from "./columnList";
 import Column from "./column";
 import Divider from "./divider";
+import Equation from "./equation";
+import File from "./file";
 
 export default function Block({ value, idx }: { value: Type; idx?: number }) {
   if (value.type === "bookmark")
@@ -30,4 +34,7 @@ export default function Block({ value, idx }: { value: Type; idx?: number }) {
     return <ColumnList value={value as ColumnListType} />;
   if (value.type === "column") return <Column value={value as ColumnType} />;
   if (value.type === "divider") return <Divider />;
+  if (value.type === "equation")
+    return <Equation value={value as EquationType} />;
+  if (value.type === "file") return <File value={value as FileType} />;
 }

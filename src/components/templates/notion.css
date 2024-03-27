@@ -19,6 +19,7 @@
   --n2c-brown-background: #f4eeee;
   --n2c-gray-background: #f1f1ef;
 
+  --n2c-hover-bg: rgba(55, 53, 47, 0.08);
   --n2c-text: rgb(55, 53, 47);
   --n2c-border: rgba(55, 53, 47, 0.16);
   --n2c-code: rgb(247, 246, 243);
@@ -53,6 +54,7 @@
     --n2c-brown-background: #4a3228;
     --n2c-gray-background: #2f2f2f;
 
+    --n2c-hover-bg: rgba(255, 255, 255, 0.055);
     --n2c-text: rgba(255, 255, 255, 0.81);
     --n2c-border: rgba(255, 255, 255, 0.13);
     --n2c-code: rgba(255, 255, 255, 0.03);
@@ -217,6 +219,9 @@
   border-radius: 4px;
   position: relative;
   fill: inherit;
+}
+.n2c_bookmark_:hover {
+  background-color: var(--n2c-hover-bg);
 }
 .n2c_bookmark_content {
   flex: 4 1 180px;
@@ -483,6 +488,72 @@
   border-color: var(--n2c-border);
 }
 
+/* equation */
+
+.n2c_equation {
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.n2c_equation > div {
+  display: flex;
+  padding: 4px 8px;
+  width: 100%;
+  flex-direction: column;
+  overflow: auto;
+  color: inherit;
+  fill: inherit;
+}
+
+/* file */
+
+.n2c_file {
+  width: 100%;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+.n2c_file > div {
+  user-select: none;
+  transition: background 20ms ease-in 0s;
+  cursor: pointer;
+  flex-grow: 1;
+  min-width: 0px;
+  border-radius: 4px;
+  color: inherit;
+  fill: inherit;
+}
+.n2c_file > div:hover {
+  background-color: var(--n2c-hover-bg);
+}
+.n2c_file > div > div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 2px;
+}
+.n2c_file > div > div > div:first-child {
+  user-select: none;
+  --pseudoSelection--background: transparent;
+  margin-right: 2px;
+  width: 1.35em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  min-height: calc(1.5em + 6px);
+  height: 1.35em;
+}
+.n2c_file > div > div > div:first-child > svg {
+  fill: var(--n2c-text);
+}
+.n2c_file > div > div > div:last-child {
+  flex: 1 1 0px;
+  min-width: 1px;
+}
+
 .n2c_emoji {
   height: 21.6px;
   width: 21.6px;
@@ -497,7 +568,7 @@
   white-space: nowrap;
 }
 
-.n2c_file {
+.n2c_file_ {
   user-select: none;
   transition: background 20ms ease-in 0s;
   cursor: pointer;
@@ -508,7 +579,7 @@
   width: 24px;
   border-radius: 0.25em;
 }
-.n2c_file > img {
+.n2c_file_ > img {
   display: block;
   object-fit: cover;
   border-radius: 4px;
