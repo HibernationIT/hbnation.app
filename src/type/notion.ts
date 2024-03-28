@@ -192,3 +192,43 @@ export type File = {
     name: string;
   } & File_;
 } & Block;
+export type Headings = {
+  [key: string]: {
+    rich_text: RichText[];
+    color: Color;
+    is_toggleable: boolean;
+    children: Block[];
+  };
+} & Block;
+export type Image = {
+  image: {
+    type: "file" | "external";
+  } & File_;
+} & Block;
+export type NumberedListItem = {
+  numbered_list_item: {
+    rich_text: RichText[];
+    color: Color;
+    children: Block[];
+  };
+} & Block;
+export type Quote = {
+  quote: {
+    rich_text: RichText[];
+    color: Color;
+    children: Block[];
+  };
+} & Block;
+export type Table = {
+  table: {
+    table_width: number;
+    has_column_header: boolean;
+    has_row_header: boolean;
+    children: TableRow[];
+  };
+} & Block;
+export type TableRow = {
+  table_row: {
+    cells: RichText[][];
+  };
+};

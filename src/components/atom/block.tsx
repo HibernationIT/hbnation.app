@@ -9,6 +9,11 @@ import {
   Block as Type,
   Equation as EquationType,
   File as FileType,
+  Headings as HeadingsType,
+  Image as ImageType,
+  NumberedListItem as NumberedListItemType,
+  Quote as QuoteType,
+  Table as TableType,
 } from "@/type/notion";
 import Bookmark from "./bookmark";
 import Paragraph from "./paragraph";
@@ -20,8 +25,21 @@ import Column from "./column";
 import Divider from "./divider";
 import Equation from "./equation";
 import File from "./file";
+import Heading from "./heading";
+import Image from "./image";
+import NumberedListItem from "./numberedListItem";
+import Quote from "./quote";
+import Table from "./table";
 
-export default function Block({ value, idx }: { value: Type; idx?: number }) {
+export default function Block({
+  value,
+  idx,
+  number,
+}: {
+  value: Type;
+  idx?: string;
+  number?: number;
+}) {
   if (value.type === "bookmark")
     return <Bookmark value={value as BookmarkType} />;
   if (value.type === "paragraph")
@@ -37,4 +55,17 @@ export default function Block({ value, idx }: { value: Type; idx?: number }) {
   if (value.type === "equation")
     return <Equation value={value as EquationType} />;
   if (value.type === "file") return <File value={value as FileType} />;
+  if (value.type.startsWith("heading"))
+    return <Heading value={value as HeadingsType} />;
+  if (value.type === "image") return <Image value={value as ImageType} />;
+  if (value.type === "numbered_list_item")
+    return (
+      <NumberedListItem
+        value={value as NumberedListItemType}
+        idx={idx}
+        number={number}
+      />
+    );
+  if (value.type === "quote") return <Quote value={value as QuoteType} />;
+  if (value.type === "table") return <Table value={value as TableType} />;
 }

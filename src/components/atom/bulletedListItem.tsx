@@ -1,15 +1,18 @@
-import { Block as BlockType, BulletedListItem as Type } from "@/type/notion";
+import { BulletedListItem as Type } from "@/type/notion";
 import RichText from "./richText";
-import Block from "./block";
+import Blocks from "./blocks";
 
 export default function BulletedListItem({
   value,
   idx,
 }: {
   value: Type;
-  idx?: number;
+  idx?: string;
 }) {
-  const index = idx || 0;
+  let index: number = 0;
+  if (idx === undefined) index = 0;
+  else if (idx.startsWith("bullted")) index = Number(idx.split("-")[1]);
+
   let className = "n2c_bulleted_list_item_";
   if (index % 3 === 0) className += "disc";
   if (index % 3 === 1) className += "circle";
@@ -24,11 +27,10 @@ export default function BulletedListItem({
           </div>
           {value.has_children && (
             <div className="n2c_bulleted_list_item_children">
-              {value.bulleted_list_item.children?.map(
-                (v: BlockType, key: number) => (
-                  <Block key={key.toString()} value={v} idx={index + 1} />
-                )
-              )}
+              <Blocks
+                value={value.bulleted_list_item.children}
+                idx={`bullted-${index + 1}`}
+              />
             </div>
           )}
         </li>

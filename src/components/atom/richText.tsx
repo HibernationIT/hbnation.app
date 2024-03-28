@@ -18,15 +18,23 @@ export default function RichText({ value }: { value: Type[] }) {
     className += " n2c_" + v.annotations.color;
 
     if (v.annotations.code) {
-      return <code className={className}>{v.plain_text}</code>;
+      return (
+        <code key={idx.toString()} className={className}>
+          {v.plain_text}
+        </code>
+      );
     }
     if (v.href != null) {
       return (
-        <a href={v.href} className={className}>
+        <a href={v.href} key={idx.toString()} className={className}>
           {v.plain_text}
         </a>
       );
     }
-    return <span className={className}>{v.plain_text}</span>;
+    return (
+      <span key={idx.toString()} className={className}>
+        {v.plain_text}
+      </span>
+    );
   });
 }

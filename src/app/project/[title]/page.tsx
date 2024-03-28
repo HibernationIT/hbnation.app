@@ -1,7 +1,7 @@
 import { getDatabase, getPage } from "@/api/notion";
 import Footer from "@/components/templates/footer";
 import Header from "@/components/templates/header";
-import Notion from "@/components/templates/notion";
+import NotionRenderer from "@/components/templates/notionRenderer";
 
 type IProps = {
   params: {
@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: IProps) {
           </div>
         </section>
         <section className="max-w-screen-lg w-full text-gray-0 px-8 pb-9">
-          <Notion value={data} />
+          <NotionRenderer value={data} />
         </section>
       </main>
       <Footer />
