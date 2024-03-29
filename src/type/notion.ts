@@ -92,7 +92,6 @@ export type Emoji_ = {
   emoji: string;
 };
 export type File_ = {
-  type: "file";
   file?: {
     url: string;
     expiry_time: string;
@@ -232,3 +231,23 @@ export type TableRow = {
     cells: RichText[][];
   };
 };
+export type ToDo = {
+  to_do: {
+    rich_text: RichText[];
+    checked: boolean;
+    color: Color;
+    children: Block[];
+  };
+} & Block;
+export type Toggle = {
+  toggle: {
+    rich_text: RichText[];
+    color: Color;
+    children: Block[];
+  };
+} & Block;
+export type Video = {
+  video: {
+    type: "file" | "external";
+  } & File_;
+} & Block;

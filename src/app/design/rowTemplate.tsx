@@ -63,7 +63,10 @@ function Block({ idx, data }: BlockIProps) {
           </a>
           <p className="text-gray-500">{data.description}</p>
         </div>
-        <a className="flex items-center gap-2 w-fit text-white bg-main hover:bg-main-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 hover:cursor-pointer">
+        <a
+          href={`/design/${encodeURIComponent(data.name)}`}
+          className="flex items-center gap-2 w-fit text-white bg-main hover:bg-main-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 hover:cursor-pointer"
+        >
           <span>Learn more</span>
           <svg
             className="w-6 h-6 text-white"

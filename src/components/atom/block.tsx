@@ -14,6 +14,9 @@ import {
   NumberedListItem as NumberedListItemType,
   Quote as QuoteType,
   Table as TableType,
+  ToDo as ToDoType,
+  Toggle as ToggleType,
+  Video as VideoType,
 } from "@/type/notion";
 import Bookmark from "./bookmark";
 import Paragraph from "./paragraph";
@@ -30,6 +33,9 @@ import Image from "./image";
 import NumberedListItem from "./numberedListItem";
 import Quote from "./quote";
 import Table from "./table";
+import ToDo from "./todo";
+import Toggle from "./toggle";
+import Video from "./video";
 
 export default function Block({
   value,
@@ -68,4 +74,7 @@ export default function Block({
     );
   if (value.type === "quote") return <Quote value={value as QuoteType} />;
   if (value.type === "table") return <Table value={value as TableType} />;
+  if (value.type === "to_do") return <ToDo value={value as ToDoType} />;
+  if (value.type === "toggle") return <Toggle value={value as ToggleType} />;
+  if (value.type === "video") return <Video value={value as VideoType} />;
 }

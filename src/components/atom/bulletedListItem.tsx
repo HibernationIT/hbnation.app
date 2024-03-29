@@ -19,7 +19,11 @@ export default function BulletedListItem({
   if (index % 3 === 2) className += "square";
 
   return (
-    <div className="n2c_bulleted_list_item">
+    <div
+      className={`n2c_bulleted_list_item ${
+        "n2c_" + value.bulleted_list_item.color
+      }`}
+    >
       <ul>
         <li className={className}>
           <div>

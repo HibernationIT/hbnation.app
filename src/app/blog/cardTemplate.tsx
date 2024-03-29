@@ -26,9 +26,11 @@ type BlockIProps = {
 function Block({ data }: BlockIProps) {
   return (
     <div className="max-w-96 w-full h-fit bg-main-100 border border-main rounded-lg overflow-hidden">
-      <div className="flex flex-row justify-center items-center w-full h-fit">
-        <img src={data.image} alt="image" className="max-w-screen-sm" />
-      </div>
+      <a href={`/blog/${encodeURIComponent(data.name)}`}>
+        <div className="flex flex-row justify-center items-center w-full h-fit">
+          <img src={data.image} alt="image" className="max-w-screen-sm" />
+        </div>
+      </a>
       <div className="flex flex-col gap-2 p-6">
         <div className="flex flex-row gap-2">
           {data.tags.map((tag: string, key: number) => (
@@ -40,7 +42,9 @@ function Block({ data }: BlockIProps) {
             </span>
           ))}
         </div>
-        <p className="text-2xl text-gray-0 font-bold">{data.name}</p>
+        <a href={`/blog/${encodeURIComponent(data.name)}`}>
+          <p className="text-2xl text-gray-0 font-bold">{data.name}</p>
+        </a>
         <p className="text-gray-400">{data.description}</p>
       </div>
     </div>

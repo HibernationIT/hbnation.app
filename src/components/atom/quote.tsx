@@ -3,7 +3,7 @@ import RichText from "./richText";
 
 export default function Quote({ value }: { value: QuoteType }) {
   return (
-    <div className="n2c_quote">
+    <div className={`n2c_quote ${"n2c_" + value.quote.color}`}>
       <blockquote>
         <div>
           <RichText value={value.quote.rich_text} />

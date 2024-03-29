@@ -21,7 +21,11 @@ export default function NumberedListItem({
   if (index % 3 === 2) className += "lower-roman";
 
   return (
-    <div className="n2c_numbered_list_item">
+    <div
+      className={`n2c_numbered_list_item ${
+        "n2c_" + value.numbered_list_item.color
+      }`}
+    >
       <ol start={number}>
         <li className={className}>
           <div>
