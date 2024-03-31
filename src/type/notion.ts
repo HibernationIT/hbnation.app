@@ -88,7 +88,6 @@ export type Bots = {
 };
 
 export type Emoji_ = {
-  type: "emoji";
   emoji: string;
 };
 export type File_ = {
@@ -158,7 +157,10 @@ export type BulletedListItem = {
 export type Callout = {
   callout: {
     rich_text: RichText[];
-    icon: Emoji_ | File_;
+    icon: {
+      type: "emoji" | "file";
+    } & Emoji_ &
+      File_;
     color: Color;
   };
 } & Block;

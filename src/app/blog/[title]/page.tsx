@@ -10,7 +10,7 @@ type IProps = {
 };
 
 async function getData(title: string) {
-  console.time("project page");
+  console.time("blog page");
   const database = await getDatabase("7bcac528c84545bf861e7ec9bc26409a", {
     filter: {
       property: "이름",
@@ -19,14 +19,12 @@ async function getData(title: string) {
       },
     },
   });
-  console.timeEnd("project page");
+  console.timeEnd("blog page");
   return database.results[0];
 }
 
 export default async function ProjectPage({ params }: IProps) {
   const database = await getData(decodeURIComponent(params.title));
-  console.log(database);
-
   const data = await getPage(database.id);
 
   return (

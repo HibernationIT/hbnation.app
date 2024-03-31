@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import ArrowSvg from "../components/icons/arrowSvg";
 
-export default function () {
+export default function DownButton() {
   function scrollDown() {
     setScroll(1);
   }

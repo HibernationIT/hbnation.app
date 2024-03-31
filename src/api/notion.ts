@@ -49,7 +49,9 @@ async function getBlockChild(blockId: string) {
 async function requestValue(url: string, option: any) {
   return await fetch(url, {
     ...option,
-    cache: "no-store",
+    next: {
+      revalidate: 1800,
+    },
     headers: {
       "Notion-Version": "2022-06-28",
       "Content-Type": "application/json",

@@ -47,8 +47,8 @@ export default function Heading({ value }: { value: Headings }) {
           )}
           {value.has_children &&
             open &&
-            value[value.type].children.map((child: BlockType) => (
-              <Block value={child} />
+            value[value.type].children.map((child: BlockType, key: number) => (
+              <Block key={key.toString()} value={child} />
             ))}
         </div>
       </div>
