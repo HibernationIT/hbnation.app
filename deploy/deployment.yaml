@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hbnation-app
+  labels:
+    app.kubernetes.io/name: hbnation-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hbnation-app
+  template:
+    metadata:
+      labels:
+        app: hbnation-app
+    spec:
+      containers:
+        - name: hbnation-app
+          image: yny.ocir.io/axypltwgvodw/hbnation-app:latest
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: docker-registry
