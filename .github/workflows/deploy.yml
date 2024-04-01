@@ -33,7 +33,7 @@ jobs:
 
       - name: set Deployment
         run: |-
-          sed -i "s|${{ secrets.OCI_REGISTRY_URL }}/hbnation-app:latest|${{ secrets.OCI_REGISTRY_URL }}/hbnation-app:$GITHUB_SHA|" ./deploy/deployment.yaml
+          sed -i "s|${{ secrets.OCI_REGISTRY_URL }}/hbnation-app:latest|${{ secrets.OCI_REGISTRY_URL }}/hbnation-app:$GITHUB_SHA|" ./deploy/deployment.yml
 
       - name: Deploy
         uses: actions-hub/kubectl@master
