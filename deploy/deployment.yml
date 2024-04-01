@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hbnation-app
-          image: yny.ocir.io/axypltwgvodw/hbnation-app:latest
+          image: hbnation-app:latest
           ports:
             - containerPort: 3000
       imagePullSecrets:
