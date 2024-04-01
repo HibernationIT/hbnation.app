@@ -23,7 +23,8 @@ jobs:
 
       - name: build the Docker image
         run: |-
-          docker build \
+          docker buildx build \
+          --platform linux/arm64 \
           --tag "${{ secrets.OCI_REGISTRY_URL }}/hbnation-app:$GITHUB_SHA" \
           .
 
