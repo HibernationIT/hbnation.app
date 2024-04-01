@@ -21,16 +21,13 @@ jobs:
           username: ${{ secrets.OCI_REGISTRY_USERNAME }}
           password: ${{ secrets.OCI_REGISTRY_PASSWORD }}
 
-      - name: build the Docker image
+      - name: build and push the Docker image
         run: |-
           docker buildx build \
+          --push \
           --platform linux/arm64 \
           --tag "${{ secrets.OCI_REGISTRY_URL }}/hbnation-app:$GITHUB_SHA" \
           .
-
-      - name: push the Docker image
-        run: |-
-          docker push "${{ secrets.OCI_REGISTRY_URL }}/hbnation-app:$GITHUB_SHA"
 
       - name: set Deployment
         run: |-
