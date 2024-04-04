@@ -1,6 +1,6 @@
 import { getDatabase, getPage } from "@/api/notion";
 import Footer from "@/components/templates/footer";
-import Header from "@/components/templates/header";
+import Header from "@/components/templates/Header/header";
 import NotionRenderer from "@/components/templates/notionRenderer";
 
 type IProps = {

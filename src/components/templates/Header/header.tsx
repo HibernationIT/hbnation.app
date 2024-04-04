@@ -2,27 +2,24 @@
 
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import styles from "./header.module.css";
+import classNames from "classnames/bind";
 
 export default function Header() {
   const pathname = usePathname();
+
   const [view, setView] = useState(false);
 
-  function active(path: string): string {
-    let value;
+  const cb = classNames.bind(styles);
 
-    if (pathname === path || (pathname.startsWith(path) && path !== "/"))
-      value = "text-white bg-main md:bg-transparent md:text-main";
-    else
-      value =
-        "text-gray-50 hover:bg-main hover:text-white md:hover:bg-transparent md:border-0 md:hover:text-main";
-
-    return "block py-2 px-3 md:p-0 rounded " + value;
-  }
+  const active = (path: string): boolean => {
+    return pathname === path || (pathname.startsWith(path) && path !== "/");
+  };
 
   return (
-    <nav className="bg-main-100 w-full fixed z-50">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+    <nav className={styles.header}>
+      <div>
+        <a href="/" className={styles.logo}>
           <svg
             className="w-10 h-10 fill-gray-0"
             xmlns="http://www.w3.org/2000/svg"
@@ -32,20 +29,11 @@ export default function Header() {
           </svg>
         </a>
         <button
-          data-collapse-toggle="navbar-default"
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg md:hidden hover:bg-main-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
-          aria-controls="navbar-default"
-          aria-expanded="false"
+          className={styles.hamburger}
           onClick={() => setView((state) => !state)}
         >
-          <svg
-            className="w-5 h-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 17 14"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 14">
             <path
-              className="stroke-gray-100"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
@@ -53,34 +41,30 @@ export default function Header() {
             />
           </svg>
         </button>
-        <div
-          className={`${
-            view ? "" : "hidden"
-          } w-full md:block md:w-auto font-medium`}
-        >
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 border-main-300 md:border-0 bg-main-200 md:bg-main-100">
+        <div className={cb("list", { active: view })}>
+          <ul>
             <li>
-              <a href="/" className={active("/")}>
+              <a href="/" className={cb({ active: active("/") })}>
                 HOME
               </a>
             </li>
             <li>
-              <a href="/project" className={active("/project")}>
+              <a href="/project" className={cb({ active: active("/project") })}>
                 PROJECT
               </a>
             </li>
             <li>
-              <a href="/blog" className={active("/blog")}>
+              <a href="/blog" className={cb({ active: active("/blog") })}>
                 BLOG
               </a>
             </li>
             <li>
-              <a href="/design" className={active("/design")}>
+              <a href="/design" className={cb({ active: active("/design") })}>
                 DESIGN
               </a>
             </li>
             <li>
-              <a href="/icon" className={active("/icon")}>
+              <a href="/icon" className={cb({ active: active("/icon") })}>
                 ICON
               </a>
             </li>

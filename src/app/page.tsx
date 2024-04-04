@@ -4,7 +4,7 @@ import BlogSvg from "@/components/icons/blogSvg";
 import IllustSvg from "@/components/icons/illustSvg";
 import ProjectSvg from "@/components/icons/projectSvg";
 import Footer from "@/components/templates/footer";
-import Header from "@/components/templates/header";
+import Header from "@/components/templates/Header/header";
 import Accodion from "./accordion";
 import { getDatabase } from "@/api/notion";
 
