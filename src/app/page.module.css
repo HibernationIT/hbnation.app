@@ -1,0 +1,189 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4.5rem;
+}
+.main > section {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: calc(100vh - 72px);
+}
+
+.mainSection {
+  background-image: var(--background-image);
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.mainSection > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+}
+.mainSectionContent {
+  justify-content: center;
+
+  height: 100%;
+
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.mainSectionContent > div {
+  width: 100%;
+  max-width: 1280px;
+
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.mainSectionContentTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+}
+.mainSectionContentTitle > svg {
+  width: 2.25rem;
+  height: 2.25rem;
+  fill: #ffffff;
+}
+.mainSectionContentTitle > span {
+  color: rgb(255, 255, 255);
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+.mainSectionContentSubTitle {
+  margin-bottom: 4rem;
+
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: rgb(255, 255, 255);
+}
+.mainSectionContentChips {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.mainSectionContentChips > a {
+  padding: 0.25rem 0.75rem;
+
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 9999px;
+
+  transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(255, 255, 255);
+}
+.mainSectionContentChips > a:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.mainSectionNav {
+  flex-shrink: 0;
+
+  height: 16rem;
+
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.mainSectionNavItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding: 3.5rem 3rem;
+
+  width: 100%;
+  max-width: 1280px;
+  height: fit-content;
+}
+.mainSectionNavItems > a {
+  text-align: center;
+}
+.mainSectionNavItems > a > span {
+  color: var(--gray-400);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+
+  transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+}
+.mainSectionNavItems > a:hover > svg {
+  fill: #ffffff;
+}
+.mainSectionNavItems > a:hover > span {
+  color: rgb(255, 255, 255);
+}
+.mainSectionNavItemIcon {
+  width: 4rem;
+  height: 4rem;
+
+  transition: fill cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+
+  fill: var(--gray-400);
+}
+
+.secondSection > div {
+  max-width: 1280px;
+  width: 100%;
+
+  padding: 2rem 2.25rem;
+}
+.secondSectionTitle {
+  color: var(--gray-0);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+.secondSectionSubTitle {
+  margin-top: 0.5rem;
+  margin-bottom: 2.25rem;
+
+  color: var(--gray-500);
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mainSectionContent {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+  .mainSectionContentTitle > svg {
+    width: 4rem;
+    height: 4rem;
+  }
+  .mainSectionContentTitle > span {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  .mainSectionContentSubTitle {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .mainSectionNav {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .mainSectionNavItems {
+    padding: 1.75rem 6rem;
+  }
+  .mainSectionNavItems > span {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .mainSectionNavItemIcon {
+    width: 6rem;
+    height: 6rem;
+  }
+}

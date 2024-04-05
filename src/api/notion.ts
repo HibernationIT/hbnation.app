@@ -1,7 +1,7 @@
 const apiKey = process.env.NOTION_API_KEY;
 
 export async function getDatabase(
-  databaseId: string,
+  databaseId: string | undefined,
   body: {
     filter?: Filter;
     sorts?: Sorts;
