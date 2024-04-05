@@ -1,4 +1,4 @@
-import Footer from "@/components/templates/footer";
+import Footer from "@/components/templates/Footer/footer";
 import Header from "@/components/templates/Header/header";
 import RowTemplate from "./rowTemplate";
 import { getDatabase } from "@/api/notion";
