@@ -55,7 +55,14 @@ export default function DownButton() {
   }, [scroll]);
 
   return (
-    <button className="flex justify-center w-full" onClick={scrollDown}>
+    <button
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+      }}
+      onClick={scrollDown}
+    >
       <ArrowSvg />
     </button>
   );

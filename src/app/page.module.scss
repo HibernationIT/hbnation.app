@@ -4,15 +4,16 @@
   align-items: center;
   justify-content: space-between;
   padding-top: 4.5rem;
-}
-.main > section {
-  position: relative;
 
-  display: flex;
-  flex-direction: column;
+  & > section {
+    position: relative;
 
-  width: 100%;
-  height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: calc(100vh - 72px);
+  }
 }
 
 .mainSection {

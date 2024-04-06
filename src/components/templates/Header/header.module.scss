@@ -1,0 +1,135 @@
+.header {
+  position: fixed;
+  z-index: 50;
+
+  width: 100%;
+  background-color: var(--main-100);
+
+  & > div {
+    max-width: 1280px;
+    padding: 1rem;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  & > svg {
+    width: 2.25rem;
+    height: 2.25rem;
+    fill: var(--gray-0);
+  }
+}
+
+.hamburger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  border-radius: 0.5rem;
+
+  &:hover {
+    background-color: var(--main-200);
+  }
+
+  & > svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke: var(--gray-100);
+  }
+}
+
+.list {
+  display: none;
+
+  width: 100%;
+  font-weight: 500;
+
+  &.active {
+    display: block;
+  }
+
+  & > ul {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+    margin-top: 1rem;
+
+    border: 1px solid var(--main-300);
+    border-radius: 0.5rem;
+    background-color: var(--main-200);
+    font-weight: 500;
+  }
+
+  li > a {
+    display: block;
+
+    padding: 0.5rem 0.75rem;
+
+    border-radius: 0.25rem;
+    color: var(--gray-50);
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--main);
+      color: rgb(255, 255, 255);
+    }
+    &.active {
+      background-color: var(--main);
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  .list {
+    display: block;
+    width: auto;
+
+    & > ul {
+      flex-direction: row;
+
+      padding: 0;
+      margin-top: 0;
+
+      border-width: 0;
+      background-color: var(--main-100);
+
+      :not([hidden]) ~ :not([hidden]) {
+        margin-left: 2rem;
+      }
+
+      & > li > a {
+        padding: 0;
+        border-width: 0;
+
+        &:hover {
+          background-color: transparent;
+          color: var(--main);
+        }
+        &.active {
+          background-color: transparent;
+          color: var(--main);
+        }
+      }
+    }
+  }
+}
