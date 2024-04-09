@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useState } from "react";
 import ArrowSvg from "../components/icons/arrowSvg";
+import styles from "./downButton.module.scss";
 
 export default function DownButton() {
   function scrollDown() {
@@ -43,7 +44,7 @@ export default function DownButton() {
   }, []);
 
   useEffect(() => {
-    const height = window.innerHeight - 72;
+    const height = window.innerHeight;
 
     if (scroll <= 2) {
       window.scroll({
@@ -55,14 +56,7 @@ export default function DownButton() {
   }, [scroll]);
 
   return (
-    <button
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        width: "100%",
-      }}
-      onClick={scrollDown}
-    >
+    <button className={styles.downButton} onClick={scrollDown}>
       <ArrowSvg />
     </button>
   );

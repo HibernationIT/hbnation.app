@@ -20,22 +20,22 @@ export default async function Home() {
     {
       name: "PROJECT",
       url: "/project",
-      icon: <ProjectSvg className={styles.mainSectionNavItemIcon} />,
+      icon: <ProjectSvg />,
     },
     {
       name: "BLOG",
       url: "/blog",
-      icon: <BlogSvg className={styles.mainSectionNavItemIcon} />,
+      icon: <BlogSvg />,
     },
     {
       name: "DESIGN",
       url: "/design",
-      icon: <DesignSvg className={styles.mainSectionNavItemIcon} />,
+      icon: <DesignSvg />,
     },
     {
       name: "ICON",
       url: "/icon",
-      icon: <IconSvg className={styles.mainSectionNavItemIcon} />,
+      icon: <IconSvg />,
     },
   ];
 

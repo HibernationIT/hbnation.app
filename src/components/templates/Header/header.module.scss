@@ -25,9 +25,9 @@
   align-items: center;
 
   & > svg {
-    width: 2.25rem;
-    height: 2.25rem;
-    fill: var(--gray-0);
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: var(--gray);
   }
 }
 
@@ -40,7 +40,9 @@
   width: 2.5rem;
   height: 2.5rem;
 
+  border-width: 0;
   border-radius: 0.5rem;
+  background-color: var(--main-100);
 
   &:hover {
     background-color: var(--main-200);
