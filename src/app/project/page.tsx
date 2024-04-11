@@ -2,6 +2,7 @@ import { getDatabase } from "@/api/notion";
 import Footer from "@/components/templates/Footer/footer";
 import Header from "@/components/templates/Header/header";
 import RowTemplate from "./rowTemplate";
+import styles from "./page.module.scss";
 
 async function getData() {
   console.time("project");
@@ -29,16 +30,12 @@ export default async function Project() {
   return (
     <>
       <Header />
-      <main className="flex flex-col items-center pt-18">
-        <section className="flex flex-col w-full gap-4 py-16">
-          <h2 className="text-gray-0 text-4xl font-bold text-center">
-            My Projects
-          </h2>
-          <p className="mt-2 mb-9 text-xl text-gray-500 text-center">
-            지금까지 만든 토이 프로젝트들을 소개합니다
-          </p>
+      <main className={styles.main}>
+        <section className={styles.header}>
+          <h2>My Projects</h2>
+          <p>지금까지 만든 토이 프로젝트를 소개합니다</p>
         </section>
-        <section className="max-w-screen-xl w-full px-8">
+        <section>
           <RowTemplate data={data.results} />
         </section>
       </main>
