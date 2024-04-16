@@ -47,6 +47,20 @@
   }
 }
 
+button,
+input,
+a {
+  &:focus {
+    outline-style: solid;
+    outline-color: var(--main);
+  }
+}
+
+button {
+  background-color: transparent;
+  border-width: 0;
+}
+
 body {
   background: linear-gradient(to bottom, var(--main-100), var(--main-200));
 }

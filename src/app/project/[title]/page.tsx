@@ -10,20 +10,6 @@ type IProps = {
   };
 };
 
-async function getData(title: string) {
-  console.time("project page");
-  const database = await getDatabase("05b441947e73424f8fce737e7ecc17eb", {
-    filter: {
-      property: "이름",
-      rich_text: {
-        equals: title,
-      },
-    },
-  });
-  console.timeEnd("project page");
-  return database.results[0];
-}
-
 export default async function ProjectPage({ params }: IProps) {
   const database = await getData(decodeURIComponent(params.title));
   const data = await getPage(database.id);
@@ -59,4 +45,18 @@ export default async function ProjectPage({ params }: IProps) {
       <Footer />
     </>
   );
+}
+
+async function getData(title: string) {
+  console.time("project page");
+  const database = await getDatabase("05b441947e73424f8fce737e7ecc17eb", {
+    filter: {
+      property: "이름",
+      rich_text: {
+        equals: title,
+      },
+    },
+  });
+  console.timeEnd("project page");
+  return database.results[0];
 }

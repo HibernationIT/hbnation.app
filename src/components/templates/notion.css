@@ -334,7 +334,7 @@ q:after {
   white-space: pre-wrap;
   word-break: break-word;
   padding: 3px 2px;
-  min-height: 1.875rem;
+  min-height: 1rem;
 }
 
 /* bookmark */
@@ -810,7 +810,7 @@ h4 {
   margin-bottom: 4px;
 }
 .n2c_image > img {
-  width: 100%;
+  max-width: 100%;
 }
 
 /* bulleted list item */

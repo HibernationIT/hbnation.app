@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { FormEvent, RefObject, useLayoutEffect, useRef } from "react";
+import styles from "./searchBox.module.scss";
 
 type IProps = {
   title?: string;
@@ -18,7 +19,7 @@ export default function SearchBox({ title }: IProps) {
 
   return (
     <form
-      className="flex items-center w-full"
+      className={styles.form}
       onSubmit={(e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -27,14 +28,11 @@ export default function SearchBox({ title }: IProps) {
         });
       }}
     >
-      <div className="relative w-full">
-        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+      <div>
+        <div>
           <svg
-            className="w-6 h-6 text-gray-400"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
             fill="none"
             viewBox="0 0 24 24"
           >
@@ -50,9 +48,7 @@ export default function SearchBox({ title }: IProps) {
           ref={titleRef}
           type="text"
           id="search-title"
-          className="bg-gray-700 border border-gray-500 text-gray-0 text-sm rounded-lg focus:ring-main focus:border-main block w-full ps-10 p-2.5 [&:placeholder-shown~button]:invisible"
           placeholder="제목으로 포스팅을 찾아보세요"
-          required
         />
         <button
           type="reset"
@@ -64,7 +60,6 @@ export default function SearchBox({ title }: IProps) {
           }}
         >
           <svg
-            className="w-6 h-6"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -81,12 +76,8 @@ export default function SearchBox({ title }: IProps) {
           </svg>
         </button>
       </div>
-      <button
-        type="submit"
-        className="p-2.5 ms-2 text-sm font-medium text-white bg-main rounded-lg border border-main-400 hover:bg-main-400 focus:ring-4 focus:outline-none focus:ring-blue-300"
-      >
+      <button type="submit">
         <svg
-          className="w-4 h-4"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

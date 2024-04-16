@@ -1,6 +1,8 @@
+import styles from "./cardTemplate.module.scss";
+
 export default function CardTemplate({ data }: any) {
   return (
-    <div className="grid grid-cols-1 justify-items-center gap-16 xl:grid-cols-3 md:grid-cols-2 px-8 pb-18">
+    <div className={styles.template}>
       {data.map((value: any, key: number) => {
         const d = {
           image: value.properties["이미지"].files[0].file.url,
@@ -25,27 +27,22 @@ type BlockIProps = {
 
 function Block({ data }: BlockIProps) {
   return (
-    <div className="max-w-96 w-full h-fit bg-main-100 border border-main rounded-lg overflow-hidden">
+    <div className={styles.card}>
       <a href={`/blog/${encodeURIComponent(data.name)}`}>
-        <div className="flex flex-row justify-center items-center w-full h-fit">
-          <img src={data.image} alt="image" className="max-w-screen-sm" />
+        <div>
+          <img src={data.image} alt="image" />
         </div>
       </a>
-      <div className="flex flex-col gap-2 p-6">
-        <div className="flex flex-row gap-2">
+      <div>
+        <div>
           {data.tags.map((tag: string, key: number) => (
-            <span
-              key={key.toString()}
-              className="bg-main-200 text-main border border-main-400 px-2 rounded-md"
-            >
-              {tag}
-            </span>
+            <span key={key.toString()}>{tag}</span>
           ))}
         </div>
         <a href={`/blog/${encodeURIComponent(data.name)}`}>
-          <p className="text-2xl text-gray-0 font-bold">{data.name}</p>
+          <p>{data.name}</p>
         </a>
-        <p className="text-gray-400">{data.description}</p>
+        <p>{data.description}</p>
       </div>
     </div>
   );

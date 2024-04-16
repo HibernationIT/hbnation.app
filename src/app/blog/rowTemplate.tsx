@@ -1,6 +1,8 @@
+import styles from "./rowTemplate.module.scss";
+
 export default function RowTemplate({ data }: any) {
   return (
-    <div className="flex flex-col gap-8 [&>hr:last-child]:invisible">
+    <div className={styles.template}>
       {data.map((value: any, key: number) => {
         const data = {
           date: value.properties["날짜"].date.start,
@@ -27,26 +29,21 @@ type BlockIProps = {
 function Block({ data }: BlockIProps) {
   return (
     <>
-      <div>
-        <div className="flex flex-row justify-between mb-5">
-          <div className="flex flex-row gap-2">
+      <div className={styles.card}>
+        <div>
+          <div>
             {data.tags.map((tag: string, idx: number) => (
-              <span
-                key={idx.toString()}
-                className="bg-main-200 text-main border border-main-400 px-2 rounded-md"
-              >
-                {tag}
-              </span>
+              <span key={idx.toString()}>{tag}</span>
             ))}
           </div>
-          <span className="text-gray-400">{data.date}</span>
+          <span>{data.date}</span>
         </div>
-        <div className="flex flex-col gap-4">
+        <div>
           <a href={`/blog/${encodeURIComponent(data.name)}`}>
-            <h2 className="text-gray-0 text-2xl font-bold">{data.name}</h2>
+            <h2>{data.name}</h2>
           </a>
-          <p className="text-gray-400 text-base">{data.description}</p>
-          <div className="flex flex-row justify-end w-full">
+          <p>{data.description}</p>
+          <div>
             <a
               href={`/blog/${encodeURIComponent(data.name)}`}
               className="text-main"
@@ -56,7 +53,7 @@ function Block({ data }: BlockIProps) {
           </div>
         </div>
       </div>
-      <hr className="border-gray-700" />
+      <hr className={styles.hr} />
     </>
   );
 }

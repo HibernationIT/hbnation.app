@@ -4,26 +4,6 @@ import Header from "@/components/templates/Header/header";
 import RowTemplate from "./rowTemplate";
 import styles from "./page.module.scss";
 
-async function getData() {
-  console.time("project");
-  const data = await getDatabase("05b441947e73424f8fce737e7ecc17eb", {
-    filter: {
-      property: "노출",
-      checkbox: {
-        equals: true,
-      },
-    },
-    sorts: [
-      {
-        property: "생성일시",
-        direction: "descending",
-      },
-    ],
-  });
-  console.timeEnd("project");
-  return data;
-}
-
 export default async function Project() {
   const data = await getData();
 
@@ -42,4 +22,24 @@ export default async function Project() {
       <Footer />
     </>
   );
+}
+
+async function getData() {
+  console.time("project");
+  const data = await getDatabase("05b441947e73424f8fce737e7ecc17eb", {
+    filter: {
+      property: "노출",
+      checkbox: {
+        equals: true,
+      },
+    },
+    sorts: [
+      {
+        property: "생성일시",
+        direction: "descending",
+      },
+    ],
+  });
+  console.timeEnd("project");
+  return data;
 }
