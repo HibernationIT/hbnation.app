@@ -42,7 +42,7 @@ export default async function ProjectPage({ params }: IProps) {
 
 async function getData(title: string) {
   console.time("blog page");
-  const database = await getDatabase("7bcac528c84545bf861e7ec9bc26409a", {
+  const database = await getDatabase(process.env.NOTION_BLOG_DATABASE, {
     filter: {
       property: "이름",
       rich_text: {

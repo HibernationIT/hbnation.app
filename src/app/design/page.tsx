@@ -26,7 +26,7 @@ export default async function Illust() {
 
 async function getData() {
   console.time("project");
-  const data = await getDatabase("49b55aec3870421aa1db16f7f505ced1", {
+  const data = await getDatabase(process.env.NOTION_DESIGN_DATABASE, {
     filter: {
       property: "노출",
       checkbox: {

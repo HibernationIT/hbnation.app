@@ -26,7 +26,7 @@ export default async function Project() {
 
 async function getData() {
   console.time("project");
-  const data = await getDatabase("05b441947e73424f8fce737e7ecc17eb", {
+  const data = await getDatabase(process.env.NOTION_PROJECT_DATABASE, {
     filter: {
       property: "노출",
       checkbox: {

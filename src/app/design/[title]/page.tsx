@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }: IProps) {
 
 async function getData(title: string) {
   console.time("design page");
-  const database = await getDatabase("49b55aec3870421aa1db16f7f505ced1", {
+  const database = await getDatabase(process.env.NOTION_DESIGN_DATABASE, {
     filter: {
       property: "이름",
       rich_text: {

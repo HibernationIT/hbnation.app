@@ -28,7 +28,7 @@ export default async function Icon() {
 
 async function getData() {
   console.time("icon");
-  const data = await getDatabase("b7bfb3b1552e4b2db12854ec32af6caa", {
+  const data = await getDatabase(process.env.NOTION_ICON_DATABASE, {
     filter: {
       property: "노출",
       checkbox: {

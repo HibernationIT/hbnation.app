@@ -62,7 +62,7 @@ async function getData(title: string) {
     });
   }
 
-  const data = await getDatabase("7bcac528c84545bf861e7ec9bc26409a", {
+  const data = await getDatabase(process.env.NOTION_BLOG_DATABASE, {
     filter: {
       and: filter,
     },
