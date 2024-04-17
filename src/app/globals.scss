@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --background-image: url("/image/background_light.svg");
 
@@ -11,9 +7,10 @@
   --main-400: #9445e6;
   --main: #692ca9;
 
-  --gray-0: #333333;
-  --gray-50: #111827;
-  --gray-100: #1f2937;
+  --gray: #000000;
+  --gray-0: #111827;
+  --gray-50: #1f2937;
+  --gray-100: #333333;
   --gray-200: #374151;
   --gray-300: #4b5563;
   --gray-400: #6b7280;
@@ -34,19 +31,34 @@
     --main-300: #2e005d;
     --main-400: #4a0083;
 
-    --gray-0: #ffffff;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
+    --gray: #ffffff;
+    --gray-0: #f9fafb;
+    --gray-50: #f3f4f6;
+    --gray-100: #e5e7eb;
+    --gray-200: #d1d5db;
+    --gray-300: #9ca3af;
+    --gray-400: #6b7280;
+    --gray-500: #4b5563;
+    --gray-600: #374151;
+    --gray-700: #333333;
     --gray-800: #1f2937;
     --gray-900: #111827;
-    --gray-950: #333333;
+    --gray-950: #000000;
   }
+}
+
+button,
+input,
+a {
+  &:focus {
+    outline-style: solid;
+    outline-color: var(--main);
+  }
+}
+
+button {
+  background-color: transparent;
+  border-width: 0;
 }
 
 body {
@@ -60,11 +72,5 @@ main {
 @media screen and (min-width: 768px) {
   main {
     min-height: calc(100vh - 160px);
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
   }
 }

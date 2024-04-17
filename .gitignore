@@ -37,3 +37,7 @@ next-env.d.ts
 
 # authentication
 .env
+
+# ide
+.vscode
+.idea

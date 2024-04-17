@@ -1,0 +1,41 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+
+  & > section {
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    max-width: 1280px;
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+}
+
+.header {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  gap: 1.5rem;
+
+  & > h2 {
+    text-align: center;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    color: var(--gray-0);
+  }
+  & > p {
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: var(--gray-400);
+  }
+}
