@@ -2,6 +2,29 @@ import Footer from "@/components/templates/Footer/footer";
 import Header from "@/components/templates/Header/header";
 import CardTemplate from "./cardTemplate";
 import { getDatabase } from "@/api/notion";
+import styles from "./page.module.scss";
+
+export default async function Icon() {
+  const data = await getData();
+
+  return (
+    <>
+      <Header />
+      <main className={styles.main}>
+        <section className={styles.header}>
+          <h2>My Icons</h2>
+          <p>
+            토이 프로젝트에 사용하기 위해 만든 아이콘들 입니다 저작권 표시 없이
+            <br />
+            마음껏 사용하여도 괜찮습니다
+          </p>
+        </section>
+        <CardTemplate data={data} />
+      </main>
+      <Footer />
+    </>
+  );
+}
 
 async function getData() {
   console.time("icon");
@@ -21,28 +44,4 @@ async function getData() {
   });
   console.timeEnd("icon");
   return data;
-}
-
-export default async function Icon() {
-  const data = await getData();
-
-  return (
-    <>
-      <Header />
-      <main>
-        <section className="flex flex-col w-full gap-4 px-8 py-16">
-          <h2 className="text-gray-0 text-4xl font-bold text-center">
-            My Icons
-          </h2>
-          <p className="mt-2 mb-9 text-xl text-gray-500 text-center">
-            토이 프로젝트에 사용하기 위해 만든 아이콘들 입니다 저작권 표시 없이
-            <br />
-            마음껏 사용하여도 괜찮습니다
-          </p>
-        </section>
-        <CardTemplate data={data} />
-      </main>
-      <Footer />
-    </>
-  );
 }
