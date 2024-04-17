@@ -33,17 +33,11 @@ type BlockIProps = {
 
 function Block({ data, idx }: BlockIProps) {
   return (
-    <div
-      className={styles.card}
-      // className={`flex flex-col items-center w-full gap-6 md:gap-16 ${
-      //   idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-      // }`}
-    >
+    <div className={styles.card}>
       <div
         style={{
           backgroundImage: `url(${data.image})`,
         }}
-        className="gap-16"
       />
       <div>
         <div className={styles.cardContent}>

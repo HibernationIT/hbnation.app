@@ -1,6 +1,8 @@
+import styles from "./rowTemplate.module.scss";
+
 export default function RowTemplate({ data }: any) {
   return (
-    <div className="flex flex-col w-full gap-16">
+    <div className={styles.rowTemplate}>
       {data.map((value: any, key: number) => {
         const d = {
           name: value.properties["이름"].title[0].plain_text as string,
@@ -9,14 +11,13 @@ export default function RowTemplate({ data }: any) {
           description: value.properties["설명"].rich_text[0]
             .plain_text as string,
         };
-        return <Block key={key.toString()} idx={key} data={d} />;
+        return <Block key={key.toString()} data={d} />;
       })}
     </div>
   );
 }
 
 type BlockIProps = {
-  idx: number;
   data: {
     image: string;
     name: string;
@@ -25,29 +26,20 @@ type BlockIProps = {
   };
 };
 
-function Block({ idx, data }: BlockIProps) {
+function Block({ data }: BlockIProps) {
   return (
-    <div
-      className={`flex flex-col items-center w-full gap-6 md:gap-16 ${
-        idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-      }`}
-    >
+    <div className={styles.card}>
       <div
         style={{
           backgroundImage: `url(${data.image})`,
         }}
-        className="h-64 md:h-64 md:max-w-100 w-full bg-cover bg-center rounded-lg"
       />
-      <div className="max-w-112 min-w-60 w-full">
-        <div className="flex flex-col gap-3 mb-6">
-          <p className="text-gray-0 text-4xl font-bold">{data.name}</p>
-          <a
-            href={data.link}
-            className="flex flex-row items-center gap-2 text-main text-lg"
-          >
+      <div>
+        <div className={styles.cardContent}>
+          <p>{data.name}</p>
+          <a href={data.link}>
             <span>Figma</span>
             <svg
-              className="w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -65,11 +57,10 @@ function Block({ idx, data }: BlockIProps) {
         </div>
         <a
           href={`/design/${encodeURIComponent(data.name)}`}
-          className="flex items-center gap-2 w-fit text-white bg-main hover:bg-main-400 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 hover:cursor-pointer"
+          className={styles.cardLink}
         >
           <span>Learn more</span>
           <svg
-            className="w-6 h-6 text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
